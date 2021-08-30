@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$script = <<-'SCRIPT'
+#!/bin/bash
+apt-get update
+apt-get install -y python3 python3-pip python3-dev git
+curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+apt-get install -y nodejs
+SCRIPT
+
+Vagrant.configure(2) do |config|
+	config.vm.box = "debian/buster64"			
+	config.vm.box_check_update = false
+	
+	config.vm.define 'admin' do |machine|
+		machine.vm.hostname = "admin"	
+		machine.vm.network 'public_network', ip: '192.168.1.118'		
+		machine.vm.provider "virtualbox" do |vb|
+			vb.gui = false
+			vb.memory = 4096
+			vb.cpus = 4
+		end
+	end
+	
+	config.vm.synced_folder '../src', '/home/src'
+	 config.vm.provision "shell", inline: $script
+end
