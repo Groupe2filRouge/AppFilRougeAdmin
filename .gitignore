@@ -1,5 +1,6 @@
 **/.vagrant/
 **.vdi
+**/.vs/
 **/.cache/
 **/.python_history
 **/.bash_history
