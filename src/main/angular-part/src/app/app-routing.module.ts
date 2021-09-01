@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'modifiy/:id',
-    component: ModifyComponent,
+    component: CreateComponent,
     resolve: {
       list: LinkResolver  // on associe un resolver à la route
     }

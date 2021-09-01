@@ -19,6 +19,10 @@ export class LinkService {
     return of(this.ELEMENT_DATA)
   }
 
+  public get(id: number): Observable<any>{
+    return of(this.ELEMENT_DATA.find(element => element.id === id));
+  }
+
   public create(link: Link){
     
   }

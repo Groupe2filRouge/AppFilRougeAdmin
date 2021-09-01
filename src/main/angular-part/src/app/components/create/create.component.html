@@ -1,35 +1,70 @@
 <form [formGroup]="profileForm" >
-
-  <label for="first-name">First Name: </label>
-  <input id="first-name" type="text" formControlName="firstName">
+ <!-- project: new FormControl('', Validators.required),
+    adress: new FormControl('', Validators.required),
+    branch: new FormControl(''),
+    branchName: new FormControl(''),
+    s3: new FormControl('', Validators.required),
+    bucket: new FormControl('', Validators.required),
+    key: new FormControl('', Validators.required),
+    secret: new FormControl('', Validators.required),
+    channel: new FormControl('', Validators.required),
+    token: new FormControl('', Validators.required) -->
 
    <table class="example-full-width" cellspacing="0"><tr>
     <td><mat-form-field class="example-full-width" appearance="standard">
-      <mat-label>First name</mat-label>
-      <input matInput>
+      <mat-label >adress</mat-label>
+      <input matInput formControlName="adress">
     </mat-form-field></td>
-    <td><mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Long Last Name That Will Be Truncated</mat-label>
-      <input matInput>
-      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-      </button>
+    <td><mat-form-field class="example-full-width" appearance="standard">
+      <mat-label>project</mat-label>
+      <input matInput formControlName="project">
     </mat-form-field></td>
-    <td>
-      <mat-form-field appearance="outline">
+        <td><mat-form-field class="example-full-width" appearance="standard">
+      <mat-label>branch</mat-label>
+      <input matInput formControlName="branchName">
+    </mat-form-field></td>
+   
+  </tr>
+  <tr>
+      <td><mat-form-field class="example-full-width" appearance="standard">
+      <mat-label>s3</mat-label>
+      <input matInput formControlName="s3">
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width" appearance="standard">
+      <mat-label>bucket</mat-label>
+      <input matInput formControlName="bucket">
+    </mat-form-field></td>
+        <td><mat-form-field class="example-full-width" appearance="standard">
+      <mat-label>key</mat-label>
+      <input matInput formControlName="key">
+    </mat-form-field></td>
+   <td>
+    <mat-form-field appearance="standard">
     <mat-label>Enter your password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="secret">
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
     </td>
-  </tr></table>
+  </tr>
+  <tr>
+       <td><mat-form-field class="example-full-width" appearance="standard">
+      <mat-label>channel</mat-label>
+      <input matInput formControlName="channel">
+    </mat-form-field></td>
+   <td>
+    <mat-form-field appearance="standard">
+    <mat-label>Token</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="token">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+    </td>
+  </tr>
+  </table>
 
-  <label for="last-name">Last Name: </label>
-  <input id="last-name" type="text" formControlName="lastName">
-
-<p>Complete the form to enable button.</p>
- <button mat-raised-button color="primary">Primary</button>
+<button mat-raised-button color="primary">Primary</button>
 <button  mat-button color="primary" type="submit" [disabled]="!profileForm.valid" (click)="onSubmit()">Submit</button>
 </form>
