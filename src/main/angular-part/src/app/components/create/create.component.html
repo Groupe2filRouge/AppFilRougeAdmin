@@ -1,11 +1,35 @@
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="profileForm" >
 
   <label for="first-name">First Name: </label>
   <input id="first-name" type="text" formControlName="firstName">
+
+   <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width" appearance="standard">
+      <mat-label>First name</mat-label>
+      <input matInput>
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Long Last Name That Will Be Truncated</mat-label>
+      <input matInput>
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field></td>
+    <td>
+      <mat-form-field appearance="outline">
+    <mat-label>Enter your password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+    </td>
+  </tr></table>
 
   <label for="last-name">Last Name: </label>
   <input id="last-name" type="text" formControlName="lastName">
 
 <p>Complete the form to enable button.</p>
-<button type="submit" [disabled]="!profileForm.valid">Submit</button>
+ <button mat-raised-button color="primary">Primary</button>
+<button  mat-button color="primary" type="submit" [disabled]="!profileForm.valid" (click)="onSubmit()">Submit</button>
 </form>

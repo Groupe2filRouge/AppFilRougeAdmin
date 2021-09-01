@@ -11,7 +11,11 @@ export class CreateComponent implements OnInit {
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
+    password: new FormControl('')
   });
+
+  value = 'Clear me';
+  hide = true;
 
   constructor() { }
 
