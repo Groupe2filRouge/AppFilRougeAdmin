@@ -10,7 +10,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding-top: 0;
 }
 
- .mat-dialog-content {
+.app-full-bleed-dialog .mat-dialog-content {
 	padding: 1em;
     margin: 0;
 }
