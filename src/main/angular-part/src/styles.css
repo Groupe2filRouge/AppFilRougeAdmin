@@ -3,13 +3,20 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 .app-full-bleed-dialog .mat-dialog-container {
-padding-left: 0;
+	padding-left: 0;
     padding-right: 0;
     padding-top: 0;
 }
 
-.app-full-bleed-dialog .mat-dialog-content {
-      padding: 1em;
+ .mat-dialog-content {
+	padding: 1em;
     margin: 0;
+}
+
+.app-full-bleed-dialog h2{
+    background: #3f51b5;
+    color: #fff;
+    padding: 1em;
 }

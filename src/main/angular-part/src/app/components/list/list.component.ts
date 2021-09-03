@@ -50,7 +50,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
   public delete(id: number){
 
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+    const dialogRef = this.dialog.open(DialogContentExampleDialog, {panelClass: 'app-full-bleed-dialog'});
 
     dialogRef.afterClosed().subscribe(result => {
       if(!!result && result === true){ 
