@@ -1,53 +1,21 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-      <span class="material-icons md-18">face</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        
-    </button>
-  </mat-toolbar>
-
-  <p>
-  <mat-toolbar>
-   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>My App</span>
+  <span>Administration Fil Rouge</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-   <mat-icon>share</mat-icon>
- </button>
+    <mat-icon matTooltip="Add link" matTooltipPosition="below"
+          matTooltipHideDelay="1000" (click)="add()">add</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with help icon">
+    <mat-icon matTooltip="Info about the action" matTooltipPosition="left"
+          matTooltipHideDelay="1000">help</mat-icon>
+  </button>
 </mat-toolbar>
-</p>
 
 <div class="app">
-  <header>
-    <section>
-      <h1>{{ title }}</h1>
-    </section>
-    <nav>
-      <ul>
-        <li><a routerLink="/">List</a></li>
-        <li><a routerLink="/create">Create</a></li>
-      </ul>
-    </nav>
-  </header>
-
   <main>
     <router-outlet></router-outlet>
   </main>
-
-  <footer>
-  </footer>
 </div>

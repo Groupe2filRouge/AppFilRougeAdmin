@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -23,15 +24,12 @@ export class CreateComponent implements OnInit {
     token: new FormControl('', Validators.required)
   });
 
-  value = 'Clear me';
   hide = true;
+  title = "Create"
 
-  constructor(private route: ActivatedRoute) {}
-
-    ngOnInit() {
-        this.route.data.subscribe((data) => { const info = data.list;
-          // TODO - ne pas oublier id
-          if(!!info){
+  constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public myData: any) {
+    const info = myData.myData
+    if(!!info){
           this.profileForm.controls['id'].setValue(info.id);
           this.profileForm.controls['adress'].setValue(info.gitAdress);
           this.profileForm.controls['branch'].setValue(info.gitBranch);
@@ -43,8 +41,12 @@ export class CreateComponent implements OnInit {
           this.profileForm.controls['secret'].setValue(info.s3Password);
           this.profileForm.controls['channel'].setValue(info.slackChannel);
           this.profileForm.controls['token'].setValue(info.slackToken);
+
+          this.title = "Update"
           }
-        });
+  }
+
+    ngOnInit() {
     }
 
   onSubmit() {

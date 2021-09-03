@@ -1,59 +1,65 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content class="mat-typography">
 <form [formGroup]="profileForm" >
- <!-- project: new FormControl('', Validators.required),
-    adress: new FormControl('', Validators.required),
-    branch: new FormControl(''),
-    branchName: new FormControl(''),
-    s3: new FormControl('', Validators.required),
-    bucket: new FormControl('', Validators.required),
-    key: new FormControl('', Validators.required),
-    secret: new FormControl('', Validators.required),
-    channel: new FormControl('', Validators.required),
-    token: new FormControl('', Validators.required) -->
 
-   <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width" appearance="standard">
+<div class="wrapper">
+
+   <table class="example-full-width one" cellspacing="0">
+       <fieldset >
+<legend> Git </legend>
+    <tr><mat-form-field class="example-full-width" appearance="standard">
       <mat-label >adress</mat-label>
       <input matInput formControlName="adress">
-    </mat-form-field></td>
-    <td><mat-form-field class="example-full-width" appearance="standard">
+    </mat-form-field></tr>
+    <tr><mat-form-field class="example-full-width" appearance="standard">
       <mat-label>project</mat-label>
       <input matInput formControlName="project">
-    </mat-form-field></td>
-        <td><mat-form-field class="example-full-width" appearance="standard">
+    </mat-form-field></tr>
+        <tr><mat-form-field class="example-full-width" appearance="standard">
       <mat-label>branch</mat-label>
       <input matInput formControlName="branchName">
-    </mat-form-field></td>
-   
-  </tr>
-  <tr>
-      <td><mat-form-field class="example-full-width" appearance="standard">
+    </mat-form-field></tr>    
+    </fieldset>
+    </table>
+    
+
+  <table class="example-full-width two" cellspacing="0">
+     <fieldset >
+
+<legend> S3 </legend>
+      <tr><mat-form-field class="example-full-width" appearance="standard">
       <mat-label>s3</mat-label>
       <input matInput formControlName="s3">
-    </mat-form-field></td>
-    <td><mat-form-field class="example-full-width" appearance="standard">
+    </mat-form-field></tr>
+    <tr><mat-form-field class="example-full-width" appearance="standard">
       <mat-label>bucket</mat-label>
       <input matInput formControlName="bucket">
-    </mat-form-field></td>
-        <td><mat-form-field class="example-full-width" appearance="standard">
+    </mat-form-field></tr>
+        <tr><mat-form-field class="example-full-width" appearance="standard">
       <mat-label>key</mat-label>
       <input matInput formControlName="key">
-    </mat-form-field></td>
-   <td>
+    </mat-form-field></tr>
+   <tr>
     <mat-form-field appearance="standard">
     <mat-label>Enter your password</mat-label>
     <input matInput [type]="hide ? 'password' : 'text'" formControlName="secret">
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-  </mat-form-field>
-    </td>
-  </tr>
-  <tr>
-       <td><mat-form-field class="example-full-width" appearance="standard">
+    </mat-form-field>
+    </tr>
+  </fieldset>
+  </table>
+
+    <table class="example-full-width three" cellspacing="0">
+     <fieldset >
+
+<legend> Slack </legend>
+       <tr><mat-form-field class="example-full-width" appearance="standard">
       <mat-label>channel</mat-label>
       <input matInput formControlName="channel">
-    </mat-form-field></td>
-   <td>
+    </mat-form-field></tr>
+   <tr>
     <mat-form-field appearance="standard">
     <mat-label>Token</mat-label>
     <input matInput [type]="hide ? 'password' : 'text'" formControlName="token">
@@ -61,10 +67,17 @@
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
-    </td>
-  </tr>
+    </tr>
+   </fieldset>
   </table>
+  
+    </div>
 
-<button mat-raised-button color="primary">Primary</button>
-<button  mat-button color="primary" type="submit" [disabled]="!profileForm.valid" (click)="onSubmit()">Submit</button>
+   
+
 </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" type="submit" [mat-dialog-close]="true" [disabled]="!profileForm.valid">Install</button>
+</mat-dialog-actions>

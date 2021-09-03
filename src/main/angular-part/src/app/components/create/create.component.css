@@ -1,3 +1,33 @@
-tr {
-    border: 1px solid black;
+fieldset
+{
+border:1px solid #a1a1a1;
+padding:5px 10px; 
+border-radius:1em;
 }
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+  }
+  .one {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .two {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .three {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  legend {padding:0 1em}
+
+  h2{
+    background: #3f51b5;
+    color: #fff;
+    padding: 1em;
+  }

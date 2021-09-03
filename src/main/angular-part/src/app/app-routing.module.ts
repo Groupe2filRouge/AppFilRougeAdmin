@@ -4,8 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './components/list/list.component';
 import { ListResolver } from './resolvers/list.resolver';
 import { CreateComponent } from './components/create/create.component';
-import { ModifyComponent } from './components/modify/modify.component';
-import { LinkResolver } from './resolvers/link.resolver';
 import { LinkService } from './services/link.service';
 
 
@@ -15,17 +13,6 @@ const routes: Routes = [
     component: ListComponent,
     resolve: {
       list: ListResolver  // on associe un resolver à la route
-    }
-  },
-  {
-    path: 'create',
-    component: CreateComponent
-  },
-  {
-    path: 'modifiy/:id',
-    component: CreateComponent,
-    resolve: {
-      list: LinkResolver  // on associe un resolver à la route
     }
   }
 ];
