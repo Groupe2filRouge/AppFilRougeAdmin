@@ -41,9 +41,11 @@ export class ListComponent implements AfterViewInit, OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        if(!!result && result === true){ 
-          console.log(`Dialog result: ${result} `+id);
-        }
+        console.warn(result);
+        if(!!result && !!id){ 
+          console.log(`Create result: ${result} `+id);
+            this.dataSource.data = this.service.modify(this.convert2Link(result));
+          } 
       });
     });
   }
@@ -55,6 +57,39 @@ export class ListComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(!!result && result === true){ 
         console.log(`Dialog result: ${result} `+id);
+        this.dataSource.data = this.service.delete(id);
+      }
+    });
+  }
+
+  public convert2Link(form: any): Link {
+    form = form.form;
+    const result: Link = new Link();
+    result.id = form.id;
+    result.gitAdress = form.adress;
+    result.gitBranch = form.branch;
+    result.gitBranchName = form.branchName;
+    result.gitProjectName = form.project;
+    result.s3Adress = form.s3;
+    result.s3Login = form.key;
+    result.s3Name = form.bucket;
+    result.s3Password = form.secret;
+    result.slackChannel = form.channel;
+    result.slackToken = form.token;
+    console.log(result);
+    return result;
+  }
+
+  public add(){
+    const dialogRef = this.dialog.open(CreateComponent, {
+      panelClass: 'app-full-bleed-dialog', 
+      data: { myData: null },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(!!result){ 
+        console.log(`Dialog result: ${result} `);
+        this.dataSource.data = this.service.create(this.convert2Link(result));
       }
     });
   }

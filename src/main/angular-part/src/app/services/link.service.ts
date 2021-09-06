@@ -24,14 +24,28 @@ export class LinkService {
   }
 
   public create(link: Link){
-    
+    this.ELEMENT_DATA.push(link);
+    return this.ELEMENT_DATA;
   }
 
   public modify(link: Link){
-
+    const link2replace = this.ELEMENT_DATA.find(elem => elem.id == link.id);
+    link2replace!.gitAdress = link.gitAdress;
+    link2replace!.gitAdress = link.gitAdress;
+    link2replace!.gitBranch = link.gitBranch;
+    link2replace!.gitBranchName = link.gitBranchName;
+    link2replace!.gitProjectName = link.gitProjectName;
+    link2replace!.s3Adress = link.s3Adress;
+    link2replace!.s3Login = link.s3Login;
+    link2replace!.s3Name = link.s3Name;
+    link2replace!.s3Password = link.s3Password;
+    link2replace!.slackChannel = link.slackChannel;
+    link2replace!.slackToken = link.slackToken;
+    return this.ELEMENT_DATA;
   }
 
-  public delete(link: Link){
-
+  public delete(id: number){
+    this.ELEMENT_DATA = this.ELEMENT_DATA.filter(elem => elem.id !== id);
+    return this.ELEMENT_DATA;
   }
 }
