@@ -19,6 +19,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { ListComponent } from './components/list/list.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
     AppRoutingModule,

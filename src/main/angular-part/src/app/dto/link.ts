@@ -1,5 +1,5 @@
 export class Link {
-    id: number = 0;
+    _id?: any;
     gitProjectName: string = '';
     gitAdress: string = '';
     gitBranch: boolean = false;

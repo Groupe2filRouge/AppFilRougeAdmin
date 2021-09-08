@@ -15,7 +15,7 @@ import { DialogContentExampleDialog } from './dialog-content-example-dialog';
 })
 export class ListComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['project', 'adress', 'isBranch', 'branch', 's3', 'bucket', 'channel', 'edit', 'delete'];
+  displayedColumns: string[] = ['project', 'adress', 'branch', 's3', 'bucket', 'channel', 'edit', 'delete'];
   
   dataSource!: MatTableDataSource<Link>;
 
@@ -33,7 +33,7 @@ export class ListComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  onClickOpenDialog(id: number) {
+  onClickOpenDialog(id: any) {
     return this.service.get(id).subscribe(receivedData => {
       const dialogRef = this.dialog.open(CreateComponent, {
         panelClass: 'app-full-bleed-dialog', 
@@ -41,23 +41,22 @@ export class ListComponent implements AfterViewInit, OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.warn(result);
         if(!!result && !!id){ 
-          console.log(`Create result: ${result} `+id);
-            this.dataSource.data = this.service.modify(this.convert2Link(result));
+            const up = this.convert2Link(result)
+            up._id = id;
+            this.service.modify(up).subscribe(data => this.dataSource.data = data)
           } 
       });
     });
   }
 
-  public delete(id: number){
+  public delete(id: any){
 
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {panelClass: 'app-full-bleed-dialog'});
 
     dialogRef.afterClosed().subscribe(result => {
       if(!!result && result === true){ 
-        console.log(`Dialog result: ${result} `+id);
-        this.dataSource.data = this.service.delete(id);
+        this.service.delete(id).subscribe(data => this.dataSource.data = data)
       }
     });
   }
@@ -65,9 +64,8 @@ export class ListComponent implements AfterViewInit, OnInit {
   public convert2Link(form: any): Link {
     form = form.form;
     const result: Link = new Link();
-    result.id = form.id;
     result.gitAdress = form.adress;
-    result.gitBranch = form.branch;
+    result.gitBranch = (form.branchName !== 'main' && form.branchName !== 'master') ? true : false;
     result.gitBranchName = form.branchName;
     result.gitProjectName = form.project;
     result.s3Adress = form.s3;
@@ -76,7 +74,6 @@ export class ListComponent implements AfterViewInit, OnInit {
     result.s3Password = form.secret;
     result.slackChannel = form.channel;
     result.slackToken = form.token;
-    console.log(result);
     return result;
   }
 
@@ -88,8 +85,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(!!result){ 
-        console.log(`Dialog result: ${result} `);
-        this.dataSource.data = this.service.create(this.convert2Link(result));
+        this.service.create(this.convert2Link(result)).subscribe(data => this.dataSource.data = data)
       }
     });
   }

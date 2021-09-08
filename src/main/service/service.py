@@ -1,5 +1,6 @@
 import pymongo
 from bson.json_util import dumps, loads
+from bson.objectid import ObjectId
 import random
 import json
 
@@ -7,43 +8,40 @@ class Service():
 
     def __init__(self):
         myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-        base_de_donnees = myclient["tp-python"]
-        self.donnees_machines = base_de_donnees["machines"]
+        base_de_donnees = myclient["projet"]
+        self.donnees_liens = base_de_donnees["liens"]
         
     # https://www.w3schools.com/python/python_mongodb_getstarted.asp
 
-    def get_machines(self):
-        # Returns a JSON of the machines defined above. jsonify is a Flask function that serializes the object for us.
-        lst = list(self.donnees_machines.find({})) # Converts object to list
+    def get_liens(self):
+        lst = list(self.donnees_liens.find({})) # Converts object to list
         return dumps(lst) # Converts to String
 
-    def get_machine(self, hostname):
-            
-        myquery = { "hostname": hostname }
-    
-        l = list(self.donnees_machines.find(myquery, {"_hostname": 0})) # Converts object to list
-
+    def get_lien(self, id):
+        l = self.donnees_liens.find_one({ "_id": ObjectId(id) })
         return dumps(l) # Converts to String
         
-    def delete_machine(self, hostname):
-
-        myquery = { "hostname": hostname }
-
-        self.donnees_machines.delete_one(myquery)
+    def delete_lien(self, id):
+        self.donnees_liens.delete_one({ "_id": ObjectId(id) })        
+        return self.get_liens()
         
-        return "Deleted"
+    def update_lien(self, lien):
+        self.donnees_liens.replace_one({ "_id": ObjectId(lien['_id']['$oid'])}, 
+            { "gitProjectName": lien['gitProjectName'], 
+              "gitAdress": lien['gitAdress'], 
+              "gitBranch": lien['gitBranch'], 
+              "gitBranchName": lien['gitBranchName'], 
+              "s3Adress": lien['s3Adress'], 
+              "s3Login": lien['s3Login'], 
+              "s3Password": lien['s3Password'], 
+              "s3Name": lien['s3Name'], 
+              "slackChannel": lien['slackChannel'], 
+              "slackToken": lien['slackToken']}, upsert=True)
+        return self.get_liens()
         
-    def update_machine(self, hostname, machine):
-
-        myquery = { "hostname": hostname }
-       
-        self.donnees_machines.replace_one(myquery, machine)
-        return "Updated"    
-
-    def add_machine(self, machine):
-        x = self.donnees_machines.insert_one(machine)
-        
-        return "Added"
+    def add_lien(self, lien):
+        self.donnees_liens.insert_one(lien)
+        return self.get_liens()
 
 
 

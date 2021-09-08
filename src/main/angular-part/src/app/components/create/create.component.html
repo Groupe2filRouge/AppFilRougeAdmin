@@ -8,15 +8,15 @@
        <fieldset >
 <legend> Git </legend>
     <tr><mat-form-field class="example-full-width" appearance="standard">
-      <mat-label >adress</mat-label>
+      <mat-label >Adresse</mat-label>
       <input matInput formControlName="adress">
     </mat-form-field></tr>
     <tr><mat-form-field class="example-full-width" appearance="standard">
-      <mat-label>project</mat-label>
+      <mat-label>Nom du projet</mat-label>
       <input matInput formControlName="project">
     </mat-form-field></tr>
         <tr><mat-form-field class="example-full-width" appearance="standard">
-      <mat-label>branch</mat-label>
+      <mat-label>Nom de la branche</mat-label>
       <input matInput formControlName="branchName">
     </mat-form-field></tr>    
     </fieldset>
@@ -28,20 +28,20 @@
 
 <legend> S3 </legend>
       <tr><mat-form-field class="example-full-width" appearance="standard">
-      <mat-label>s3</mat-label>
+      <mat-label>Adresse du stockage</mat-label>
       <input matInput formControlName="s3">
     </mat-form-field></tr>
     <tr><mat-form-field class="example-full-width" appearance="standard">
-      <mat-label>bucket</mat-label>
+      <mat-label>Nom du stockage</mat-label>
       <input matInput formControlName="bucket">
     </mat-form-field></tr>
         <tr><mat-form-field class="example-full-width" appearance="standard">
-      <mat-label>key</mat-label>
+      <mat-label>Clé</mat-label>
       <input matInput formControlName="key">
     </mat-form-field></tr>
    <tr>
     <mat-form-field appearance="standard">
-    <mat-label>Enter your password</mat-label>
+    <mat-label>Clé secrete</mat-label>
     <input matInput [type]="hide ? 'password' : 'text'" formControlName="secret">
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -56,7 +56,7 @@
 
 <legend> Slack </legend>
        <tr><mat-form-field class="example-full-width" appearance="standard">
-      <mat-label>channel</mat-label>
+      <mat-label>Canal</mat-label>
       <input matInput formControlName="channel">
     </mat-form-field></tr>
    <tr>

@@ -25,12 +25,12 @@ export class CreateComponent implements OnInit {
   });
 
   hide = true;
-  title = "Create"
+  title = "Créer"
 
   constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public myData: any) {
     const info = myData.myData
     if(!!info){
-          this.profileForm.controls['id'].setValue(info.id);
+          this.profileForm.controls['id'].setValue(info._id);
           this.profileForm.controls['adress'].setValue(info.gitAdress);
           this.profileForm.controls['branch'].setValue(info.gitBranch);
           this.profileForm.controls['branchName'].setValue(info.gitBranchName);
@@ -42,7 +42,7 @@ export class CreateComponent implements OnInit {
           this.profileForm.controls['channel'].setValue(info.slackChannel);
           this.profileForm.controls['token'].setValue(info.slackToken);
 
-          this.title = "Update"
+          this.title = "Mettre à jour"
           }
   }
 
@@ -50,7 +50,5 @@ export class CreateComponent implements OnInit {
     }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
   }
 }

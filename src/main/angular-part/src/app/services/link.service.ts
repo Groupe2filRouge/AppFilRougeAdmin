@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Link } from '../dto/link';
@@ -7,45 +8,31 @@ import { Link } from '../dto/link';
 })
 export class LinkService {
 
-  ELEMENT_DATA: Link[] = [
-    {id: 1, gitProjectName: 'A', gitAdress: 'Git A', gitBranch: false, gitBranchName: 'main', s3Adress: 'S3 A', s3Login: 'login', s3Password: 'password', s3Name: 'Bucket A', slackChannel: 'C1', slackToken: 'token A'},
-    {id: 2, gitProjectName: 'B', gitAdress: 'Git B', gitBranch: false, gitBranchName: 'main', s3Adress: 'S3 B', s3Login: 'login', s3Password: 'password', s3Name: 'Bucket A', slackChannel: 'C2', slackToken: 'token B'},
-    {id: 3, gitProjectName: 'B', gitAdress: 'Git B', gitBranch: true, gitBranchName: 'B2', s3Adress: 'S3 Branche', s3Login: 'login', s3Password: 'password', s3Name: 'Bucket A', slackChannel: 'C3', slackToken: 'token C'}
-  ];
+  private linkUrl = "http://192.168.1.118:5000/projet/v1.0/liens";
 
-  constructor() { }
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE' })
+  };
+
+  constructor(private http: HttpClient) { }
 
   public getList(): Observable<Link[]>{
-    return of(this.ELEMENT_DATA)
+    return this.http.get<Link[]>(`${this.linkUrl}`, this.httpOptions)
   }
 
-  public get(id: number): Observable<any>{
-    return of(this.ELEMENT_DATA.find(element => element.id === id));
+  public get(id: any): Observable<Link>{
+    return this.http.get<Link>(`${this.linkUrl}/${id.$oid}`, this.httpOptions)
   }
 
   public create(link: Link){
-    this.ELEMENT_DATA.push(link);
-    return this.ELEMENT_DATA;
+    return this.http.post<Link[]>(`${this.linkUrl}`, link, this.httpOptions)
   }
 
   public modify(link: Link){
-    const link2replace = this.ELEMENT_DATA.find(elem => elem.id == link.id);
-    link2replace!.gitAdress = link.gitAdress;
-    link2replace!.gitAdress = link.gitAdress;
-    link2replace!.gitBranch = link.gitBranch;
-    link2replace!.gitBranchName = link.gitBranchName;
-    link2replace!.gitProjectName = link.gitProjectName;
-    link2replace!.s3Adress = link.s3Adress;
-    link2replace!.s3Login = link.s3Login;
-    link2replace!.s3Name = link.s3Name;
-    link2replace!.s3Password = link.s3Password;
-    link2replace!.slackChannel = link.slackChannel;
-    link2replace!.slackToken = link.slackToken;
-    return this.ELEMENT_DATA;
+    return this.http.put<Link[]>(`${this.linkUrl}`, link, this.httpOptions)
   }
 
-  public delete(id: number){
-    this.ELEMENT_DATA = this.ELEMENT_DATA.filter(elem => elem.id !== id);
-    return this.ELEMENT_DATA;
+  public delete(id: any){
+    return this.http.delete<Link[]>(`${this.linkUrl}/${id.$oid}`, this.httpOptions)
   }
 }
