@@ -20,8 +20,6 @@ RUN cp -r AppFilRougeAdmin/src/main/angular-part .
 # Suppression des dossiers inutiles
 RUN rm -r AppFilRougeAdmin/
 
-RUN ls
-
 WORKDIR /app/angular-part
 
 RUN npm i
