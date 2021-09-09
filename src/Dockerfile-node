@@ -1,15 +1,26 @@
 FROM node:14.17-alpine
 
+WORKDIR /app
+
 # Update et recupere git
 RUN apk update \
  && apk add git
 
+ # Optimisation
+RUN apk add --no-cache gcc musl-dev linux-headers
+
 # Copie du depot
 RUN git clone https://github.com/Groupe2filRouge/AppFilRougeAdmin.git
 
-# Copie du fichier main.py
-RUN cp AppFilRougeAdmin/src/main/angular-part .
+# Copie du fichier necessaires
+RUN cp -r AppFilRougeAdmin/src/main/angular-part .
 
-RUN npm i
+# Suppression des dossiers inutiles
+RUN rm -r AppFilRougeAdmin/
 
-CMD ["ng serve", "--host 0.0.0.0"]
+RUN ls
+RUN npm i angular-part
+
+EXPOSE 4200
+
+CMD ["ng", "serve", "--prod", "--host", "0.0.0.0"]
