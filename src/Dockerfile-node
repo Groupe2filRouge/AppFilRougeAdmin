@@ -1,4 +1,4 @@
-FROM node:14.17-alpine
+FROM node:14.17-alpine As builder
 
 WORKDIR /app
 
@@ -20,12 +20,17 @@ RUN cp -r AppFilRougeAdmin/src/main/angular-part .
 # Suppression des dossiers inutiles
 RUN rm -r AppFilRougeAdmin/
 
+# Le repertoire de travail devient l'application
 WORKDIR /app/angular-part
 
+# On install l'application
 RUN npm i
 
-RUN npm run build --prod
+# On installe le cli angular
+RUN npm i -g @angular/cli
 
-EXPOSE 4200
+# Commande au demarrage
+CMD ["ng" , "serve", "--prod", "--host", "0.0.0.0"]
 
-CMD ["npm start"]
+# Ex: docker build --no-cache -f /home/src/Dockerfile-node -t apalpant/node .
+# Ex: docker run --rm -p 4200:4200 -e BASE_URL=192.168.1.118 --name node apalpant/node
