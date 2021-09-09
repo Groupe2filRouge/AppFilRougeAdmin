@@ -1,0 +1,15 @@
+FROM node:14.17-alpine
+
+# Update et recupere git
+RUN apk update \
+ && apk add git
+
+# Copie du depot
+RUN git clone https://github.com/Groupe2filRouge/AppFilRougeAdmin.git
+
+# Copie du fichier main.py
+RUN cp AppFilRougeAdmin/src/main/angular-part .
+
+RUN npm i
+
+CMD ["ng serve", "--host 0.0.0.0"]

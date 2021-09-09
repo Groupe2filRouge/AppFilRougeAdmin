@@ -1,0 +1,37 @@
+FROM python:3.7-alpine
+
+WORKDIR /app
+
+# Update et recupere git
+RUN apk update \
+ && apk add git
+ 
+# Optimisation
+RUN apk add --no-cache gcc musl-dev linux-headers
+
+# Copie du depot
+RUN git clone https://github.com/Groupe2filRouge/AppFilRougeAdmin.git
+
+# Copie des fichiers py
+RUN cp AppFilRougeAdmin/src/main/app.py .
+RUN cp -r AppFilRougeAdmin/src/main/service .
+
+# Suppression des dossiers inutiles
+# RUN rm -r example-python/
+
+# Copie du fichier des dependances
+COPY requirements.txt .
+
+# Installation des dependances
+RUN pip install -r requirements.txt
+
+# Copie du docker intermediaire vers le courant
+COPY . .
+
+# Suppression des fichiers inutiles
+RUN rm requirements.txt Dockerfile
+
+# Regle de "pare-feu" => on expose le port 5000 => - ports : - 5000:5000 dans le docker-compose
+EXPOSE 5000
+
+CMD ["python3", "app.py"]

@@ -6,8 +6,10 @@ $script = <<-'SCRIPT'
 apt-get update
 apt-get install -y python3 python3-pip python3-dev git
 
-curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo bash -
 apt-get install -y nodejs
+
+npm i -g @angular/cli
 
 pip3 install pymongo flask flask-cors
 
@@ -17,6 +19,10 @@ apt-get update
 apt-get install -y mongodb-org
 
 systemctl start mongod
+
+git clone https://github.com/Groupe2filRouge/AppFilRougeAdmin.git
+cd AppFilRougeAdmin/src/main/angular-part/
+npm install
 
 
 SCRIPT

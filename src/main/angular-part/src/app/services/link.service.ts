@@ -8,7 +8,7 @@ import { Link } from '../dto/link';
 })
 export class LinkService {
 
-  private linkUrl = "http://192.168.1.118:5000/projet/v1.0/liens";
+  private linkUrl = "http://localhost:5000/projet/v1.0/liens";
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE' })

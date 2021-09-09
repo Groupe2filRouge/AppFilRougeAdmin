@@ -1,0 +1,20 @@
+version: '3.9'
+
+services: 
+
+    db:
+        image: mongo
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+
+    web:
+        depends_on: 
+            - db
+        build: 
+            dockerfile: Dockerfile-flask
+            context: .
+        ports: 
+            - 5000:5000
+        restart: always
