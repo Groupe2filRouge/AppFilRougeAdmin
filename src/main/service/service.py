@@ -7,7 +7,7 @@ import json
 class Service():
 
     def __init__(self):
-        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        myclient = pymongo.MongoClient("mongodb://root:secret@mongo")
         base_de_donnees = myclient["projet"]
         self.donnees_liens = base_de_donnees["liens"]
         
