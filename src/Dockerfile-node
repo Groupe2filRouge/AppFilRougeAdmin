@@ -18,9 +18,16 @@ RUN cp -r AppFilRougeAdmin/src/main/angular-part .
 # Suppression des dossiers inutiles
 RUN rm -r AppFilRougeAdmin/
 
+WORKDIR /app/angular-part
+
+RUN npm i
 RUN ls
-RUN npm i angular-part
+
+RUN npm run build --prod
+
+# Copie du docker intermediaire vers le courant
+COPY . .
 
 EXPOSE 4200
 
-CMD ["ng", "serve", "--prod", "--host", "0.0.0.0"]
+CMD ["npm start"]
