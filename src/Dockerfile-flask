@@ -12,7 +12,6 @@ RUN apk add --no-cache gcc musl-dev linux-headers
 # Copie du depot
 RUN git clone https://github.com/Groupe2filRouge/AppFilRougeAdmin.git
 
-
 # Copie des fichiers necessaires
 RUN cp AppFilRougeAdmin/src/main/app.py .
 RUN cp -r AppFilRougeAdmin/src/main/service .
