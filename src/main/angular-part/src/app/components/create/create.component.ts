@@ -16,7 +16,6 @@ export class CreateComponent implements OnInit {
     adress: new FormControl('', Validators.required),
     branch: new FormControl(''),
     branchName: new FormControl(''),
-    s3: new FormControl('', Validators.required),
     bucket: new FormControl('', Validators.required),
     key: new FormControl('', Validators.required),
     secret: new FormControl('', Validators.required),
