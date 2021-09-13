@@ -35,7 +35,6 @@ export class CreateComponent implements OnInit {
           this.profileForm.controls['branch'].setValue(info.gitBranch);
           this.profileForm.controls['branchName'].setValue(info.gitBranchName);
           this.profileForm.controls['project'].setValue(info.gitProjectName);
-          this.profileForm.controls['s3'].setValue(info.s3Adress);   
           this.profileForm.controls['key'].setValue(info.s3Login);
           this.profileForm.controls['bucket'].setValue(info.s3Name);
           this.profileForm.controls['secret'].setValue(info.s3Password);

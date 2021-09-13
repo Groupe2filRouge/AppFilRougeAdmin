@@ -15,7 +15,7 @@ import { DialogContentExampleDialog } from './dialog-content-example-dialog';
 })
 export class ListComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['project', 'adress', 'branch', 's3', 'bucket', 'channel', 'edit', 'delete'];
+  displayedColumns: string[] = ['project', 'adress', 'branch', 'bucket', 'channel', 'edit', 'delete'];
   
   dataSource!: MatTableDataSource<Link>;
 
@@ -68,7 +68,6 @@ export class ListComponent implements AfterViewInit, OnInit {
     result.gitBranch = (form.branchName !== 'main' && form.branchName !== 'master') ? true : false;
     result.gitBranchName = form.branchName;
     result.gitProjectName = form.project;
-    result.s3Adress = form.s3;
     result.s3Login = form.key;
     result.s3Name = form.bucket;
     result.s3Password = form.secret;
