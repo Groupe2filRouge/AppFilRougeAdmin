@@ -14,7 +14,7 @@ serv = Service()
 @app.route("/")
 # Generic Python functino that returns "Hello world!"
 def index():
-    return "Hello world!"
+    return "AppFilRougeAdmin"
     
 # Annotation that allows the function to be hit at the specific URL. Indicates a GET HTTP method.
 @app.route("/projet/v1.0/liens", methods=["GET"])
