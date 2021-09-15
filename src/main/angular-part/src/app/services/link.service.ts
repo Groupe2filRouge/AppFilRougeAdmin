@@ -9,7 +9,7 @@ import { environment } from './../../environments/environment';
 })
 export class LinkService {
 
-  private linkUrl = `http://${environment.base_url}:5000/projet/v1.0/liens`;
+  private linkUrl = `http://15.188.77.176/:5000/projet/v1.0/liens`;
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE' })
