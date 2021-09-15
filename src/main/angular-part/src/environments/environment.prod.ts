@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base_url: '$BASE_URL'
+  base_url: 13.37.38.59
 };
