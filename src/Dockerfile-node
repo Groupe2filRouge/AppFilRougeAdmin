@@ -28,7 +28,7 @@ RUN npm i
 RUN npm i -g @angular/cli
 
 # On build l'application en mode production
-RUN ng build --configuration production
+RUN ng build --configuration=production
 
 # Commande au demarrage
 CMD ["ng" , "serve", "--host", "0.0.0.0", "--disable-host-check"]
