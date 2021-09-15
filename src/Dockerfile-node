@@ -28,10 +28,10 @@ RUN npm i
 RUN npm i -g @angular/cli
 
 # On build l'application en mode production
-RUN ng build --configuration=production
+RUN ng build --configuration production
 
 # Commande au demarrage
-CMD ["ng" , "serve", "--host", "0.0.0.0", "--disable-host-check"]
+CMD ["ng" , "serve", "--host", "0.0.0.0", "--disable-host-check", "--configuration", "production"]
 
 # Ex: docker build --no-cache -f /home/src/Dockerfile-node -t apalpant/node .
 # Ex: docker run --rm -p 4200:4200 -e BASE_URL=192.168.1.118 --name node apalpant/node
