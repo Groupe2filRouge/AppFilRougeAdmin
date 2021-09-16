@@ -32,8 +32,7 @@ services:
         ports: 
             - 4200:4200
         restart: always 
-        environment:
-            BASE_URL: 192.168.1.118
+        command:  ng serve --host 0.0.0.0 --disable-host-check --prod
             
 volumes:
     mongodb:
